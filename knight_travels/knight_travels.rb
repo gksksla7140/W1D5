@@ -1,3 +1,19 @@
+class KnightPosition
+
+  def initialize(pos=[0,0])
+    @pos = pos
+  end
+
+  def all_valid_moves
+    resultant_moves = []
+    adds = [1,2,-1,-2].permutation(2).to_a.select{|arr|arr.first.abs!=arr.last.abs}
+    adds.each do |pos|
+      resultant_moves << [ (pos[0]+@pos[0]) , (pos[1]+@pos[1]) ]
+    end
+    resultant_moves.select{|pos| (0..7).include?(pos[0]) && (0..7).include?(pos[1])}
+  end
+end
+
 
 class PolyTreeNode
 
@@ -75,13 +91,7 @@ class PolyTreeNode
     nil
 
   end
-
-
 end
 
-# p nod1=PolyTreeNode.new(1)
-# p nod2=PolyTreeNode.new(2)
-# p nod3=PolyTreeNode.new(3)
-# p nod2.parent=nod1
-# p nod3.parent=nod1
-# p nod2.parent= nod3
+k = KnightPosition.new
+p = PolyTreeNode.new(k)
